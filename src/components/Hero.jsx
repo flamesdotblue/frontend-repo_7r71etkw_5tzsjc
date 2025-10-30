@@ -1,44 +1,110 @@
-import Spline from '@splinetool/react-spline'
+import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import Spline from '@splinetool/react-spline';
 
-export default function Hero() {
+export default function Hero({ reducedMotion = false }) {
   return (
-    <section id="home" className="relative min-h-[90vh] pt-24 text-white overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[1200px] rounded-full opacity-20 pointer-events-none" aria-hidden="true" style={{background: 'radial-gradient(closest-side, rgba(124,77,255,0.25), transparent 70%)'}} />
+    <section className="relative min-h-[88vh] w-full flex items-center justify-center">
+      {/* Spline cover background */}
+      <div className="absolute inset-0">
+        <Spline scene="https://prod.spline.design/ESO6PnMadasO0hU3/scene.splinecode" style={{ width: '100%', height: '100%' }} />
+      </div>
 
-      <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
-        <div className="space-y-6">
-          <p className="inline-block px-3 py-1 rounded-full text-xs tracking-widest uppercase bg-white/5 border border-white/10">Portfolio 2025</p>
-          <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
-            Crafting sleek, cinematic motion and brand experiences.
-          </h1>
-          <p className="text-gray-300 max-w-prose">
-            I blend motion, design, and editing to tell bold visual stories. Explore selected works across branding, reels, motion graphics, and 3D texturing.
-          </p>
-          <div className="flex flex-wrap gap-3">
-            <a
-              href="mailto:anushka@example.com"
-              className="relative inline-flex items-center gap-2 text-sm font-semibold px-5 py-3 rounded-md text-black"
+      {/* A soft gradient veil to aid contrast for content, doesn't block pointer events */}
+      <div className="pointer-events-none absolute inset-0" style={{
+        background:
+          'radial-gradient(1200px 600px at 50% 20%, rgba(6,18,56,0.35), rgba(6,18,56,0.55) 50%, rgba(6,18,56,0.75))',
+      }} />
+
+      {/* Centered glassmorphism hero card */}
+      <div className="relative z-10 w-full max-w-4xl px-6 md:px-8">
+        <GlassCard reducedMotion={reducedMotion}>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 70, damping: 16, mass: 0.7 }}
+              className="text-center"
             >
-              <span className="absolute inset-0 rounded-md bg-gradient-to-br from-[#7c4dff] to-[#00e5ff]" />
-              <span className="relative">Connect With Me</span>
-            </a>
-            <a
-              href="#works"
-              className="px-5 py-3 rounded-md border border-white/10 hover:border-white/20 text-sm font-semibold"
-            >
-              See Works
-            </a>
-          </div>
-        </div>
-        <div className="relative h-[420px] md:h-[520px] rounded-xl overflow-hidden">
-          <div className="absolute inset-0 rounded-xl ring-1 ring-white/10 pointer-events-none" />
-          <Spline
-            scene="https://prod.spline.design/VJLoxp84lCdVfdZu/scene.splinecode"
-            style={{ width: '100%', height: '100%' }}
-          />
-          <div className="pointer-events-none absolute -inset-1 rounded-[28px] bg-gradient-to-br from-[#7c4dff] to-[#00e5ff] opacity-20 blur-2xl" aria-hidden="true" />
-        </div>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white">
+                Build blazing-fast sites with AI.
+              </h1>
+              <p className="mt-4 text-base md:text-lg text-white/85 max-w-2xl mx-auto">
+                Design to production in minutes with modern UX, motion, and clean code.
+              </p>
+
+              <div className="mt-8">
+                <CTA reducedMotion={reducedMotion} />
+                <p className="mt-3 text-sm text-white/75">Start free • No card required.</p>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </GlassCard>
       </div>
     </section>
-  )
+  );
+}
+
+function GlassCard({ children, reducedMotion }) {
+  return (
+    <div className="relative">
+      {/* Gradient border wrapper */}
+      <div
+        className="relative rounded-3xl p-[1px]"
+        style={{
+          background:
+            'linear-gradient(135deg, rgba(14,165,255,0.9), rgba(124,58,237,0.9))',
+          boxShadow:
+            '0 0 0 1px rgba(255,255,255,0.06) inset, 0 10px 40px -5px rgba(14,165,255,0.25), 0 8px 48px -8px rgba(124,58,237,0.28)'
+        }}
+      >
+        {/* Inner glass layer */}
+        <div className="rounded-3xl bg-white/5 backdrop-blur-md px-8 md:px-12 py-10 md:py-12">
+          {children}
+          {/* Animated gradient line along bottom */}
+          <div className="mt-8 h-px w-full overflow-hidden rounded-full">
+            <div
+              className="h-full w-full"
+              style={{
+                background:
+                  'linear-gradient(90deg, rgba(14,165,255,0.0), rgba(14,165,255,0.85), rgba(124,58,237,0.85), rgba(255,107,138,0.85), rgba(124,58,237,0.85), rgba(14,165,255,0.0))',
+                backgroundSize: '200% 100%',
+                animation: reducedMotion ? 'none' : 'bgShift 8s ease-in-out infinite',
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CTA({ reducedMotion }) {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.04 }}
+      transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+      className="group relative inline-flex items-center justify-center rounded-full px-7 py-3 text-base font-medium text-slate-900"
+      style={{
+        background: '#06b6d4',
+        boxShadow: '0 8px 24px -6px rgba(6,182,212,0.6), 0 0 0 1px rgba(255,255,255,0.12) inset',
+      }}
+      aria-label="Get started"
+    >
+      Get started
+      {/* Inner glow */}
+      <span
+        className="pointer-events-none absolute inset-0 rounded-full"
+        style={{
+          boxShadow: 'inset 0 0 18px rgba(255,255,255,0.3)',
+          animation: reducedMotion ? 'none' : 'pulseOnce 2.2s ease-in-out infinite',
+          opacity: 0,
+        }}
+      />
+      {/* Show inner pulse only on hover via group */}
+      <style>{`
+        .group:hover span { opacity: 1; }
+      `}</style>
+    </motion.button>
+  );
 }

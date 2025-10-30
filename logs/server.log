@@ -3,7 +3,55 @@
 > vite
 
 
-  VITE v5.4.20  ready in 262 ms
+  VITE v5.4.20  ready in 280 ms
 
   ➜  Local:   http://localhost:3000/
   ➜  Network: http://172.20.2.237:3000/
+4:35:22 PM [vite] Pre-transform error: Transform failed with 1 error:
+/home/workspace/src/components/Background.jsx:95:56: ERROR: Expected "}" but found "http"
+4:35:25 PM [vite] Internal server error: Transform failed with 1 error:
+/home/workspace/src/components/Background.jsx:95:56: ERROR: Expected "}" but found "http"
+  Plugin: vite:esbuild
+  File: /home/workspace/src/components/Background.jsx:95:56
+  
+  Expected "}" but found "http"
+  93 |            opacity: 0.02,
+  94 |            backgroundImage:
+  95 |              "url('data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1400\\" height=\\"800\\">\n<filter id=\\"n\\">\n<feTurbulence type=\\"fractalNoise\\" baseFrequency=\\"0.80\\" numOctaves=\\"2\\" stitchTiles=\\"stitch\\"/>\n<feColorMatrix type=\\"saturate\\" values=\\"0\\"/>\n</filter>\n<rect width=\\"100%\\" height=\\"100%\\" filter=\\"url(%23n)\\" opacity=\\"1\\"/>\n</svg>')",
+     |                                                          ^
+  96 |            mixBlendMode: 'overlay',
+  97 |          }}
+  
+      at failureErrorWithLog (/home/workspace/node_modules/esbuild/lib/main.js:1472:15)
+      at /home/workspace/node_modules/esbuild/lib/main.js:755:50
+      at responseCallbacks.<computed> (/home/workspace/node_modules/esbuild/lib/main.js:622:9)
+      at handleIncomingPacket (/home/workspace/node_modules/esbuild/lib/main.js:677:12)
+      at Socket.readFromStdout (/home/workspace/node_modules/esbuild/lib/main.js:600:7)
+      at Socket.emit (node:events:508:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+4:35:25 PM [vite] Internal server error: Transform failed with 1 error:
+/home/workspace/src/components/Background.jsx:95:56: ERROR: Expected "}" but found "http"
+  Plugin: vite:esbuild
+  File: /home/workspace/src/components/Background.jsx:95:56
+  
+  Expected "}" but found "http"
+  93 |            opacity: 0.02,
+  94 |            backgroundImage:
+  95 |              "url('data:image/svg+xml;utf8,<svg xmlns=\\"http://www.w3.org/2000/svg\\" width=\\"1400\\" height=\\"800\\">\n<filter id=\\"n\\">\n<feTurbulence type=\\"fractalNoise\\" baseFrequency=\\"0.80\\" numOctaves=\\"2\\" stitchTiles=\\"stitch\\"/>\n<feColorMatrix type=\\"saturate\\" values=\\"0\\"/>\n</filter>\n<rect width=\\"100%\\" height=\\"100%\\" filter=\\"url(%23n)\\" opacity=\\"1\\"/>\n</svg>')",
+     |                                                          ^
+  96 |            mixBlendMode: 'overlay',
+  97 |          }}
+  
+      at failureErrorWithLog (/home/workspace/node_modules/esbuild/lib/main.js:1472:15)
+      at /home/workspace/node_modules/esbuild/lib/main.js:755:50
+      at responseCallbacks.<computed> (/home/workspace/node_modules/esbuild/lib/main.js:622:9)
+      at handleIncomingPacket (/home/workspace/node_modules/esbuild/lib/main.js:677:12)
+      at Socket.readFromStdout (/home/workspace/node_modules/esbuild/lib/main.js:600:7)
+      at Socket.emit (node:events:508:28)
+      at addChunk (node:internal/streams/readable:559:12)
+      at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)
+      at Readable.push (node:internal/streams/readable:390:5)
+      at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
